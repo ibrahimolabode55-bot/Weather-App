@@ -43,9 +43,10 @@ async function handleSearch() {
     }
 
     const cityData = data.results[0];
-    document.getElementById("loading").textContent = "";
 
     error.textContent = "";
+    document.getElementById("loading").textContent = "";
+
 
     console.log("Latitude:", cityData.latitude);
     console.log("longitude:", cityData.longitude);
