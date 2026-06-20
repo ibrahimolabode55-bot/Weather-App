@@ -27,7 +27,7 @@ async function handleSearch() {
     }
 
     error.textContent = "";
-    loading.textContent = "Loading...";
+    document.getElementById("loading").textContent = "Loading...";
 
     const city = cityInput.value;
 
@@ -37,11 +37,13 @@ async function handleSearch() {
     const data = await getCoordinates(city);
 
     if (!data.results || data.results.length === 0) {
+        document.getElementById("loading").textContent = "";
         error.textContent = "City not found";
         return;
     }
 
     const cityData = data.results[0];
+    document.getElementById("loading").textContent = "";
 
     error.textContent = "";
 
@@ -52,6 +54,8 @@ async function handleSearch() {
         cityData.latitude,
         cityData.longitude
     );
+
+    document.getElementById("loading").textContent = "";
 
     const weatherInfo = getWeatherDescription(weatherData.current.weather_code);
 
@@ -93,6 +97,7 @@ async function handleSearch() {
 
     } catch (err) {
         console.error(err);
+        document.getElementById("loading"),textContent = "";
         error.textContent = "Something went wrong. Please try again.";
     }
 }
